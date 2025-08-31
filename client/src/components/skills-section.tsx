@@ -58,15 +58,61 @@ export function SkillsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ 
-                scale: 1.1, 
-                rotate: 5,
+                scale: 1.15, 
+                y: -8,
+                rotateY: 15,
                 transition: { duration: 0.3 }
               }}
               data-testid={`skill-${skill.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
             >
-              <Card className="p-6 text-center hover:bg-accent hover:border-primary cursor-pointer group transition-all duration-300">
-                <skill.icon className={`text-4xl ${skill.color} mb-3 group-hover:text-primary transition-colors mx-auto`} />
-                <h3 className="font-semibold text-sm">{skill.name}</h3>
+              <Card className="relative p-6 text-center glassmorphism hover:shadow-2xl cursor-pointer group transition-all duration-500 border-0 overflow-hidden">
+                {/* Animated background gradient */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-primary/20 via-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  initial={false}
+                />
+                
+                {/* Skill icon with enhanced animations */}
+                <motion.div
+                  className="relative z-10 mb-4"
+                  whileHover={{ 
+                    rotate: 360,
+                    scale: 1.2
+                  }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <skill.icon className={`text-5xl ${skill.color} group-hover:text-white transition-all duration-500 mx-auto drop-shadow-lg`} />
+                </motion.div>
+                
+                {/* Skill name with gradient text */}
+                <motion.h3 
+                  className="font-semibold text-sm relative z-10 group-hover:text-white transition-colors duration-300"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  {skill.name}
+                </motion.h3>
+                
+                {/* Floating particles effect */}
+                <motion.div
+                  className="absolute top-2 right-2 w-2 h-2 bg-primary/60 rounded-full opacity-0 group-hover:opacity-100"
+                  animate={{ 
+                    y: [0, -10, 0],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: index * 0.2
+                  }}
+                />
+                
+                {/* Glow effect border */}
+                <motion.div
+                  className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-primary/50 transition-all duration-300"
+                  whileHover={{
+                    boxShadow: "0 0 20px rgba(34, 197, 94, 0.3)"
+                  }}
+                />
               </Card>
             </motion.div>
           ))}

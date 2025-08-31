@@ -8,10 +8,26 @@ export function Navigation() {
   const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Track active section based on scroll position
+      const sections = ["hero", "about", "skills", "projects", "experience", "contact"];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      if (current) {
+        setActiveSection(current);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -41,9 +57,9 @@ export function Navigation() {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? "bg-background/80 backdrop-blur-md border-b border-border" 
+          ? "glassmorphism shadow-lg" 
           : "bg-transparent"
       }`}
       initial={{ y: -100 }}
@@ -51,58 +67,94 @@ export function Navigation() {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           <motion.div 
             className="flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-transparent font-serif">
               AT
             </span>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 flex items-center space-x-2">
               {navItems.map((item) => (
-                <button
+                <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="hover:text-primary transition-colors px-3 py-2 text-sm font-medium"
+                  className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                    activeSection === item.id
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   data-testid={`nav-${item.id}`}
                 >
                   {item.label}
-                </button>
+                  {activeSection === item.id && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-blue-600 rounded-full"
+                      layoutId="activeTab"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </motion.button>
               ))}
             </div>
           </div>
 
           <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              data-testid="theme-toggle"
-              className="p-2 rounded-lg hover:bg-accent transition-colors"
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-            </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                data-testid="theme-toggle"
+                className="relative p-3 rounded-xl glassmorphism hover:bg-primary/10 transition-all duration-300"
+              >
+                <motion.div
+                  initial={false}
+                  animate={{ rotate: theme === "light" ? 0 : 180 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {theme === "light" ? (
+                    <Moon className="h-5 w-5 text-primary" />
+                  ) : (
+                    <Sun className="h-5 w-5 text-yellow-500" />
+                  )}
+                </motion.div>
+              </Button>
+            </motion.div>
 
             {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden p-2 rounded-lg hover:bg-accent transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              data-testid="mobile-menu-toggle"
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <Menu className="h-5 w-5" />
-            </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden p-3 rounded-xl glassmorphism hover:bg-primary/10 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                data-testid="mobile-menu-toggle"
+              >
+                <motion.div
+                  animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Menu className="h-5 w-5" />
+                </motion.div>
+              </Button>
+            </motion.div>
           </div>
         </div>
 

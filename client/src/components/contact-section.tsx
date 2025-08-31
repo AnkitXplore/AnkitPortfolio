@@ -132,12 +132,17 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Card className="shadow-lg">
+            <Card className="glassmorphism shadow-2xl border-0">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <Label htmlFor="name">Full Name</Label>
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">Send me a message</h3>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  {/* Floating Label Input - Name */}
+                  <motion.div 
+                    className="relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
                     <Input
                       id="name"
                       name="name"
@@ -145,14 +150,25 @@ export function ContactSection() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
+                      className="peer h-12 w-full bg-transparent border-2 border-border rounded-xl px-4 pt-6 pb-2 text-foreground placeholder-transparent focus:border-primary transition-all duration-300"
                       placeholder="Your full name"
-                      className="mt-2"
                       data-testid="input-name"
                     />
-                  </div>
+                    <Label 
+                      htmlFor="name"
+                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary"
+                    >
+                      Full Name
+                    </Label>
+                  </motion.div>
                   
-                  <div>
-                    <Label htmlFor="email">Email Address</Label>
+                  {/* Floating Label Input - Email */}
+                  <motion.div 
+                    className="relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <Input
                       id="email"
                       name="email"
@@ -160,35 +176,67 @@ export function ContactSection() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
+                      className="peer h-12 w-full bg-transparent border-2 border-border rounded-xl px-4 pt-6 pb-2 text-foreground placeholder-transparent focus:border-primary transition-all duration-300"
                       placeholder="your.email@example.com"
-                      className="mt-2"
                       data-testid="input-email"
                     />
-                  </div>
+                    <Label 
+                      htmlFor="email"
+                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary"
+                    >
+                      Email Address
+                    </Label>
+                  </motion.div>
                   
-                  <div>
-                    <Label htmlFor="message">Message</Label>
+                  {/* Floating Label Textarea - Message */}
+                  <motion.div 
+                    className="relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
                     <Textarea
                       id="message"
                       name="message"
                       required
                       value={formData.message}
                       onChange={handleInputChange}
+                      className="peer w-full min-h-[120px] bg-transparent border-2 border-border rounded-xl px-4 pt-6 pb-4 text-foreground placeholder-transparent focus:border-primary transition-all duration-300 resize-none"
                       placeholder="Tell me about your project or just say hello!"
-                      className="mt-2 min-h-[120px] resize-none"
                       data-testid="input-message"
                     />
-                  </div>
+                    <Label 
+                      htmlFor="message"
+                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-6 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary"
+                    >
+                      Message
+                    </Label>
+                  </motion.div>
                   
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full transition-all duration-200 transform hover:scale-105"
-                    data-testid="submit-form"
+                  {/* Enhanced Submit Button */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <Send className="mr-2 h-4 w-4" />
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-12 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+                      data-testid="submit-form"
+                    >
+                      <motion.div
+                        className="flex items-center justify-center"
+                        animate={isSubmitting ? { rotate: 360 } : { rotate: 0 }}
+                        transition={{ duration: 1, repeat: isSubmitting ? Infinity : 0 }}
+                      >
+                        <Send className="mr-2 h-5 w-5" />
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </motion.div>
+                    </Button>
+                  </motion.div>
                 </form>
               </CardContent>
             </Card>
@@ -202,9 +250,9 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Card className="shadow-lg">
+            <Card className="glassmorphism shadow-2xl border-0">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6">Let's connect</h3>
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">Let's connect</h3>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <div key={index} className="flex items-center gap-4">
@@ -232,9 +280,9 @@ export function ContactSection() {
             </Card>
 
             {/* Social Links */}
-            <Card className="shadow-lg">
+            <Card className="glassmorphism shadow-2xl border-0">
               <CardContent className="p-8">
-                <h3 className="text-xl font-bold mb-6">Follow me on</h3>
+                <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">Follow me on</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {socialLinks.map((social) => (
                     <a
@@ -254,9 +302,9 @@ export function ContactSection() {
             </Card>
 
             {/* QR Code for Resume */}
-            <Card className="shadow-lg">
+            <Card className="glassmorphism shadow-2xl border-0">
               <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-bold mb-4">Quick Resume Access</h3>
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">Quick Resume Access</h3>
                 <div className="bg-white p-4 rounded-lg inline-block border">
                   <div className="w-32 h-32 bg-gray-200 rounded flex items-center justify-center">
                     <QrCode className="text-4xl text-gray-500" />

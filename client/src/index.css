@@ -23,9 +23,9 @@
   --input: hsl(240 5.9% 90%);
   --ring: hsl(142 86% 28%);
   --radius: 0.75rem;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-serif: Georgia, serif;
-  --font-mono: Menlo, monospace;
+  --font-sans: "Poppins", "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
 }
 
 .dark {
@@ -77,6 +77,46 @@
   .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+
+  .glassmorphism-dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .gradient-mesh {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+    background-size: 400% 400%;
+    animation: gradient-mesh 15s ease infinite;
+  }
+
+  .floating-animation {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .typewriter {
+    overflow: hidden;
+    border-right: 3px solid;
+    white-space: nowrap;
+    animation: typing 4s steps(40) infinite, blink 0.75s step-end infinite;
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(103, 232, 249, 0.5), 0 0 40px rgba(103, 232, 249, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .glow-effect:hover {
+    box-shadow: 0 0 30px rgba(103, 232, 249, 0.7), 0 0 60px rgba(103, 232, 249, 0.5);
+  }
 }
 
 @keyframes gradient {
@@ -94,6 +134,45 @@
   }
   50% {
     transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient-mesh {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+@keyframes typing {
+  0%, 100% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    border-color: transparent;
+  }
+  51%, 100% {
+    border-color: currentColor;
   }
 }
 
