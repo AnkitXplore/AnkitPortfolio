@@ -57,26 +57,151 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative">
-              <motion.img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"
-                alt="Ankit Tiwari - Professional headshot"
-                className="w-80 h-80 rounded-2xl object-cover shadow-2xl"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                data-testid="profile-image"
-              />
+            <div className="relative w-80 h-80">
+              <svg 
+                viewBox="0 0 200 200" 
+                className="w-full h-full"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Background circle */}
+                <circle cx="100" cy="100" r="90" fill="#f0f9ff" />
+                
+                {/* Head */}
+                <motion.circle 
+                  cx="100" 
+                  cy="80" 
+                  r="40" 
+                  fill="#1e3a8a"
+                  initial={{ y: -10 }}
+                  animate={{ y: 0 }}
+                  transition={{ 
+                    y: { 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      repeatType: "reverse",
+                      ease: "easeInOut"
+                    } 
+                  }}
+                />
+                
+                {/* Body */}
+                <motion.rect 
+                  x="70" 
+                  y="120" 
+                  width="60" 
+                  height="60" 
+                  rx="10"
+                  fill="#1e40af"
+                  initial={{ y: 0 }}
+                  animate={{ y: -5 }}
+                  transition={{ 
+                    y: { 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      repeatType: "reverse",
+                      ease: "easeInOut"
+                    } 
+                  }}
+                />
+                
+                {/* Eyes */}
+                <motion.circle 
+                  cx="85" 
+                  cy="75" 
+                  r="5" 
+                  fill="white"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.circle 
+                  cx="115" 
+                  cy="75" 
+                  r="5" 
+                  fill="white"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ 
+                    duration: 3, 
+                    delay: 0.5,
+                    repeat: Infinity, 
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Smile */}
+                <motion.path 
+                  d="M85 100 Q100 115 115 100" 
+                  stroke="white" 
+                  strokeWidth="3" 
+                  fill="transparent"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: 0.5 }}
+                />
+                
+                {/* Decorative animated circles */}
+                <motion.circle 
+                  cx="40" 
+                  cy="50" 
+                  r="5" 
+                  fill="#60a5fa"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ 
+                    scale: { 
+                      duration: 1, 
+                      delay: 0.5,
+                      repeat: Infinity,
+                      repeatType: "reverse"
+                    } 
+                  }}
+                />
+                <motion.circle 
+                  cx="160" 
+                  cy="150" 
+                  r="8" 
+                  fill="#93c5fd"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ 
+                    scale: { 
+                      duration: 1.5, 
+                      delay: 0.7,
+                      repeat: Infinity,
+                      repeatType: "reverse"
+                    } 
+                  }}
+                />
+              </svg>
               
-              {/* Decorative elements */}
+              {/* Floating elements */}
               <motion.div
-                className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 -right-4 w-16 h-16 bg-primary/20 rounded-full"
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotate: [0, 360]
+                }}
+                transition={{ 
+                  duration: 8, 
+                  repeat: Infinity, 
+                  ease: "easeInOut"
+                }}
               />
               <motion.div
-                className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-500/20 rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 4, delay: 1, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-500/20 rounded-full"
+                animate={{ 
+                  y: [0, 10, 0],
+                  rotate: [360, 0]
+                }}
+                transition={{ 
+                  duration: 10, 
+                  delay: 1,
+                  repeat: Infinity, 
+                  ease: "easeInOut"
+                }}
               />
             </div>
           </motion.div>

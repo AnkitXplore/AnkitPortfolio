@@ -64,13 +64,13 @@ export function ContactSection() {
     {
       icon: Mail,
       label: "Email",
-      value: "ankit.tiwari@example.com",
-      href: "mailto:ankit.tiwari@example.com",
+      value: "tiwariankit1118@gmail.com",
+      href: "mailto:tiwariankit1118@gmail.com",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Mumbai, India",
+      value: "Gurgaon, Haryana, India",
     },
     {
       icon: Clock,
@@ -83,25 +83,25 @@ export function ContactSection() {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      href: "https://linkedin.com/in/ankittiwari",
+      href: "https://www.linkedin.com/in/ankit-tiwari-198772240?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       color: "text-blue-600",
     },
     {
       name: "GitHub",
       icon: Github,
-      href: "https://github.com/ankittiwari",
+      href: "https://github.com/AnkitXplore",
       color: "text-gray-900 dark:text-gray-100",
     },
     {
       name: "Twitter",
       icon: Twitter,
-      href: "https://twitter.com/ankittiwari",
+      href: "https://x.com/Ankit122135",
       color: "text-blue-400",
     },
     {
       name: "Medium",
       icon: MessageSquare,
-      href: "https://medium.com/@ankittiwari",
+      href: "https://medium.com/@tiwariankit5597",
       color: "text-gray-700 dark:text-gray-300",
     },
   ];
@@ -150,13 +150,13 @@ export function ContactSection() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="peer h-12 w-full bg-transparent border-2 border-border rounded-xl px-4 pt-6 pb-2 text-foreground placeholder-transparent focus:border-primary transition-all duration-300"
-                      placeholder="Your full name"
+                      className="h-12 w-full bg-transparent border-2 border-border rounded-xl px-4 pt-4 pb-2 text-foreground focus:border-primary transition-all duration-300"
+                      placeholder=" "
                       data-testid="input-name"
                     />
                     <Label 
                       htmlFor="name"
-                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary"
+                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300"
                     >
                       Full Name
                     </Label>
@@ -176,13 +176,13 @@ export function ContactSection() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="peer h-12 w-full bg-transparent border-2 border-border rounded-xl px-4 pt-6 pb-2 text-foreground placeholder-transparent focus:border-primary transition-all duration-300"
-                      placeholder="your.email@example.com"
+                      className="h-12 w-full bg-transparent border-2 border-border rounded-xl px-4 pt-4 pb-2 text-foreground focus:border-primary transition-all duration-300"
+                      placeholder=" "
                       data-testid="input-email"
                     />
                     <Label 
                       htmlFor="email"
-                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary"
+                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300"
                     >
                       Email Address
                     </Label>
@@ -201,13 +201,13 @@ export function ContactSection() {
                       required
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="peer w-full min-h-[120px] bg-transparent border-2 border-border rounded-xl px-4 pt-6 pb-4 text-foreground placeholder-transparent focus:border-primary transition-all duration-300 resize-none"
-                      placeholder="Tell me about your project or just say hello!"
+                      className="w-full min-h-[120px] bg-transparent border-2 border-border rounded-xl px-4 pt-6 pb-4 text-foreground focus:border-primary transition-all duration-300 resize-none"
+                      placeholder=" "
                       data-testid="input-message"
                     />
                     <Label 
                       htmlFor="message"
-                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-6 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary"
+                      className="absolute left-4 top-2 text-xs text-muted-foreground transition-all duration-300"
                     >
                       Message
                     </Label>
