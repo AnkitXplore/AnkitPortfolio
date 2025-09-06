@@ -1,11 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [react()],
+  base: './',
+  plugins: [react(), tsconfigPaths()],
   css: {
-    postcss: './postcss.config.cjs'
+    postcss: './postcss.config.cjs',
+    modules: {
+      localsConvention: 'camelCaseOnly'
+    }
   },
   resolve: {
     alias: {
@@ -13,11 +18,25 @@ export default defineConfig({
     }
   },
   build: {
+    outDir: 'dist',
+    emptyOutDir: true,
     rollupOptions: {
-      external: [
-        '@tanstack/react-query',
-        '@/components/ui/toaster'
-      ]
-    }
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          vendor: ['@tanstack/react-query', 'zod', 'react-hook-form']
+        }
+      }
+    },
+    minify: 'terser',
+    sourcemap: true
+  },
+  server: {
+    port: 3000,
+    open: true
+  },
+  preview: {
+    port: 3000,
+    open: true
   }
 });
